@@ -12,19 +12,19 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    build: ./backend/
+    image: 3kvs3/kittygram_backend
     env_file: .env.example
     volumes:
       - static:/backend_static
       - media:/app/media
   frontend:
     env_file: .env.example
-    build: ./frontend/
+    image: 3kvs3/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    build: ./nginx/
+    image: 3kvs3/kittygram_gateway
     env_file: .env.example
     ports:
       - 9000:80
